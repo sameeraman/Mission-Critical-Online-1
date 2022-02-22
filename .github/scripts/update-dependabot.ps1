@@ -12,15 +12,15 @@ function packageEcosystem() {
         [string] $ecosystem,
         [string] $relPath,
         [string] $targetBranch = "main", # default = main
-        [string] $interval = "daily"
+        [string] $interval = "monthly" # default = weekly
     )
 
     $block = @"
 - package-ecosystem: "$ecosystem"
   directory: "$relPath"
   schedule:
-    interval: "$interval"
-  target-branch: "$targetBranch"
+    interval: "$interval" 
+  target-branch: "$targetBranch" 
 "@
 
     return $block
@@ -72,8 +72,8 @@ foreach ($file in $files) {
         $output += "`r`n"+$block+"`r`n"
 
     # NuGET / dotNet
-    } elseif ($file.Name -like '*.sln') {
-        Write-Host "Found *.sln in $($file.FullName)"
+    } elseif ($file.Name -like '*.csproj') {
+        Write-Host "Found *.csproj in $($file.FullName)"
         $ecosystem = "nuget"
         $block = packageEcosystem -ecosystem $ecosystem `
                                   -relpath $relPath `
@@ -84,6 +84,7 @@ foreach ($file in $files) {
     } elseif ($file.FullName -like '*.github/workflows*' -and ($githubAction -ne $true)) {
         Write-Host "Found *.github/workflows* in $($file.FullName)"
         $ecosystem = "github-actions"
+        $githubAction = $true
         $block = packageEcosystem -ecosystem $ecosystem `
                                   -relpath "/" `
                                   -targetBranch "$targetBranch"

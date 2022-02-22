@@ -14,7 +14,7 @@ The AlwaysOn project consists of multiple pipelines automating various aspects a
 
 Additionally there are some auxiliary pipelines:
 
-- **Azure.AlwaysOn Deploy Locust (Standalone)** (`deploy-locust.yaml`) deploys a standalone Locust-based load testing infrastructure using Terraform and Azure Container Instances. The environment can be scaled out by setting the number of worker nodes to >=1 or scaled down by setting the number to 0. The `terraform apply` task returns the FQDN of the load testing web interface. The web interface is protected with basic authentication, the required credentials to access the web interface are stored in Azure Key Vault. Check out the [Locust](/src/testing/loadtest-locust/README.md) specific documentation for more.
+- **Azure.AlwaysOn Deploy Locust (Standalone)** (`azure-deploy-locust.yaml`) deploys a standalone Locust-based load testing infrastructure using Terraform and Azure Container Instances. The environment can be scaled out by setting the number of worker nodes to >=1 or scaled down by setting the number to 0. The `terraform apply` task returns the FQDN of the load testing web interface. The web interface is protected with basic authentication, the required credentials to access the web interface are stored in Azure Key Vault. Check out the [Locust](/src/testing/loadtest-locust/README.md) specific documentation for more.
 
 - **Azure.AlwaysOn Deploy Azure Load Generator.** (`azure-deploy-loadgenerator.yaml`) deploys a standalone Azure Functions-based load generator for simulating user activity. See the article on the [load generator](/src/testing/userload-generator/README.md) for more information.
 
@@ -73,7 +73,6 @@ Environment config files are stored in `.ado/pipelines/config` and are named `va
 | prefix | Custom prefix used for Azure resources.  | int: myaoint, prod: myaoprod, e2e: myaoe2e |
 | stampLocations | List of locations (Azure Regions) where this environment will be deployed into  | ["northeurope", "eastus2"] |
 | terraformResourceGroup | Resource Group where the Terraform state Storage account will be deployed | terraformstate-rg |
-| terraformStorageAccount | Azure Storage Account name used to store Terraform state (has to be globally unique) | myterraformstate |
 | envDnsZoneRG | OPTIONAL: Name of the Azure Resource group which holds the Azure DNS Zone for your custom domain. Not required if you do not plan to use a custom DNS name | mydns-rg |
 | envDomainName | OPTIONAL: Name of the Azure DNS Zone. Not required if you do not plan to use a custom DNS name | example.com |
 | contactEmail | E-mail alias used for alerting. **Be careful which address you put in here as it will potentially receive a lot of notification emails** | alwaysonappnet@example.com |
@@ -93,7 +92,7 @@ All pipelines are using Azure DevOps service connections to connect to Microsoft
 
 As part of the pipelines, basic Smoke Tests against the APIs are executed:
 
-- GET call to the Health Service `/health/stamp` API. Expected result: HTTP 200
+- GET call to the HealthService `/health/stamp` API. Expected result: HTTP 200
 - GET call the CatalogService `/api/1.0/catalogitem` API to retrieve a list of existing items. Expected result: HTTP 200
 - POST call to the CatalogService `/api/1.0/catalogitem/{itemId}/comments` API to create a new comment for an existing item. Expected result: HTTP 202
 - GET call to the CatalogService `/api/1.0/catalogitem/{itemId}/comments/{commentId}` API to retrieve the previously created comment. Expected result: HTTP 200
