@@ -6,6 +6,7 @@ resource "azurerm_frontdoor" "main" {
   tags = local.default_tags
 
   depends_on = [
+    azurerm_resource_group.global,
     azurerm_dns_cname_record.app_subdomain
   ]
 
