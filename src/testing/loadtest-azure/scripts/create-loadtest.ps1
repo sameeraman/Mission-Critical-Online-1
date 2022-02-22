@@ -1,7 +1,7 @@
 param
 (
   # Azure Load Test Resource Group
-  [string] $resourceGroupName,
+  #[string] $resourceGroupName,
   # Azure Load Test Resource Name
   [string] $loadTestName,
   # Load Test Id - auto-generated when empty
@@ -57,7 +57,7 @@ GetTestBody -loadTestDisplayName $loadTestDisplayName `
             -engineSize $engineSize `
             -engineInstances $engineInstances
 
-$resourceScope = "/subscriptions/" + $subscriptionId + "/resourceGroups/" + $resourceGroupName + "/providers/Microsoft.LoadTestService/loadtests/" + $loadTestName
+#$resourceScope = "/subscriptions/" + $subscriptionId + "/resourceGroups/" + $resourceGroupName + "/providers/Microsoft.LoadTestService/loadtests/" + $loadTestName
 
 $urlRoot = $apiEndpoint + "/loadtests/" + $loadTestId
 
@@ -65,11 +65,10 @@ $urlRoot = $apiEndpoint + "/loadtests/" + $loadTestId
 az rest --url $urlRoot `
   --method PATCH `
   --skip-authorization-header `
-  --resource $resourceScope `
   --headers ('@' + $accessTokenFileName) "Content-Type=application/merge-patch+json" `
-  --url-parameters resourceId=$resourceScope testId=$loadTestId api-version=$apiVersion `
+  --url-parameters testId=$loadTestId api-version=$apiVersion `
   --body ('@' + $testDataFileName) `
-  -o none $verbose
+  -o none $verbose #  --resource $resourceScope   --url-parameters resourceId=$resourceScope
 
 # Outputs and exports for pipeline usage
 if($pipeline) {

@@ -2,9 +2,9 @@
 
 # ##########
 # General
-$resourceGroupName = "pzmaltapp4-rg"
+$resourceGroupName = "afint-azloadtest-rg"
 $loadTestName = "t10"
-$loadTestId = "3aa56d49-533b-424f-b615-ef27194d2619" # Leave empty to create a new load test. Provide a GUID to update an existing load test with that name/ID, or create new if no existing load test with that name/ID.
+$loadTestId = "" # Leave empty to create a new load test. Provide a GUID to update an existing load test with that name/ID, or create new if no existing load test with that name/ID.
 $testFile = "default.jmx"
 $testFileId="9b92ed36-cbef-4466-9f23-99eea70341c4"
 $maxPageSize = 20
