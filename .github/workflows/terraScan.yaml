@@ -23,10 +23,11 @@ jobs:
         policy_type: 'azure'
         only_warn: true
         sarif_upload: true
+        verbose: true
+        skip_rules: AC_AZURE_0389
         #non_recursive:
         #iac_dir:
         #policy_path:
-        skip_rules: AC_AZURE_0389
         #config_path:
         #webhook_url:
         #webhook_token:

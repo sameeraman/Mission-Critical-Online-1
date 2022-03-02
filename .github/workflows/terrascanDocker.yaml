@@ -19,11 +19,12 @@ jobs:
       uses: accurics/terrascan-action@main
       with:
         iac_type: 'docker'
-        #iac_version: 'v14'
         policy_type: 'docker'
         only_warn: true
         sarif_upload: true
         find_vulnerabilities: true
+        verbose: true
+        #iac_version: 'v14'
         #non_recursive:
         #iac_dir:
         #policy_path:
