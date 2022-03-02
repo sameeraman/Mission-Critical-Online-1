@@ -1,5 +1,6 @@
 name: TerraScan
 on: 
+  workflow_dispatch:
   pull_request:
     types: ['opened', 'synchronize']
     paths: 
