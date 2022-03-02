@@ -25,6 +25,7 @@ jobs:
         sarif_upload: true
         verbose: true
         skip_rules: AC_AZURE_0389
+        scm_token: ${{ secrets.GITHUB_TOKEN }}
         #non_recursive:
         #iac_dir:
         #policy_path:
