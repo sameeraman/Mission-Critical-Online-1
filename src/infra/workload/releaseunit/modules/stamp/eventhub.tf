@@ -3,7 +3,7 @@ resource "azurerm_eventhub_namespace" "stamp" {
   location             = azurerm_resource_group.stamp.location
   resource_group_name  = azurerm_resource_group.stamp.name
   sku                  = "Standard"
-  zone_redundant       = true
+  zone_redundant       = false
   capacity             = var.event_hub_thoughput_units
   auto_inflate_enabled = var.event_hub_enable_auto_inflate
 
