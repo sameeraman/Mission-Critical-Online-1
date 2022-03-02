@@ -1,11 +1,11 @@
-name: Terrascan Terraform
+name: Terrascan Dockerfiles
 
 on: 
   workflow_dispatch:
   pull_request:
     types: ['opened', 'synchronize']
     paths: 
-     - '**.tf'
+     - '**/Dockerfile'
 
 jobs:
   terrascan_job:
@@ -18,8 +18,8 @@ jobs:
       id: terrascan
       uses: accurics/terrascan-action@main
       with:
-        iac_type: 'terraform'
-        iac_version: 'v14'
+        iac_type: 'docker'
+        #iac_version: 'v14'
         policy_type: 'azure'
         only_warn: true
         sarif_upload: true
