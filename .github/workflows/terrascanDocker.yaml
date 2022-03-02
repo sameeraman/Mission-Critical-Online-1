@@ -20,7 +20,7 @@ jobs:
       with:
         iac_type: 'docker'
         #iac_version: 'v14'
-        policy_type: 'azure'
+        #policy_type: 'azure'
         only_warn: true
         sarif_upload: true
         #non_recursive:
