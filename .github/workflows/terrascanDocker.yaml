@@ -20,9 +20,10 @@ jobs:
       with:
         iac_type: 'docker'
         #iac_version: 'v14'
-        #policy_type: 'azure'
+        policy_type: 'docker'
         only_warn: true
         sarif_upload: true
+        find_vulnerabilities: true
         #non_recursive:
         #iac_dir:
         #policy_path:
