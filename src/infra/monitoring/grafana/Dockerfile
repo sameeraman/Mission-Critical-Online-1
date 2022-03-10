@@ -26,6 +26,7 @@ FROM heoelri/grafana:v3
 ENV GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS="alwayson-healthmodelpanel"
 ENV GF_SERVER_DOMAIN=grafana.ourdomain.com
 ENV GF_SERVER_ROOT_URL=http://grafana.ourdomain.com:80
+ENV GF_USE_BEHIND_PROXY=true
 
 WORKDIR /var/lib/grafana/plugins/alwayson-healthmodelpanel/
 COPY --from=builder /usr/src/app/healthmodelpanel/dist* ./dist
