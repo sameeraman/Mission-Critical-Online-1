@@ -30,6 +30,8 @@ resource "azurerm_kubernetes_cluster" "stamp" {
     orchestrator_version = var.kubernetes_version
     availability_zones   = [1, 2, 3]
 
+    enable_host_encryption = true
+
     upgrade_settings {
       max_surge = "33%"
     }
