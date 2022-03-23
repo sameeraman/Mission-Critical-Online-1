@@ -44,16 +44,16 @@ stages:
           terraformStateFilename:             'terraform-grafana-$(prefix).state'
           terraformWorkingDirectory:          '$(workingDirectory)/terraform/globalresources'
 
-      - template: templates/steps-terraform-apply.yaml
-        parameters:
-          jobName:                    'GlobalInfra'
-          terraformWorkingDirectory:  '$(workingDirectory)/terraform/globalresources'
-          customPrefix:               '$(prefix)'
-          customAttributes:           '-var=queued_by="$(Build.QueuedBy)"
-                                      -var=branch="$(Build.SourceBranch)"
-                                      -var=contact_email="$(contactEmail)"
-                                      -var=environment="$(environment)"
-                                      -var=''stamps=$(stampLocationsGrafana)'''
+      # - template: templates/steps-terraform-apply.yaml
+      #   parameters:
+      #     jobName:                    'GlobalInfra'
+      #     terraformWorkingDirectory:  '$(workingDirectory)/terraform/globalresources'
+      #     customPrefix:               '$(prefix)'
+      #     customAttributes:           '-var=queued_by="$(Build.QueuedBy)"
+      #                                 -var=branch="$(Build.SourceBranch)"
+      #                                 -var=contact_email="$(contactEmail)"
+      #                                 -var=environment="$(environment)"
+      #                                 -var=''stamps=$(stampLocationsGrafana)'''
 
 - stage: buildcontainer
   displayName: 'Build Docker Container'
